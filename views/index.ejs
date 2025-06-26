@@ -1,0 +1,41 @@
+<h2>Welcome to the Members Only Clubhouse</h2>
+
+<% if (!user) { %>
+<p>Sign up to join our exclusive club and create messages!</p>
+<p><a href="/auth/signup">Join Now</a> | <a href="/auth/login">Login</a></p>
+<% } else { %>
+<p>
+  Hello <%= user.first_name %>! You are logged in as a <%= user.roles ?
+  user.roles.join(', ') : 'guest' %>.
+</p>
+<% } %>
+
+<h3>Club Messages</h3>
+
+<% if (messages.length === 0) { %>
+<p>No messages yet. Be the first to share something!</p>
+<% } else { %> <% messages.forEach(message => { %>
+<div class="message-card">
+  <h4><%= message.title %></h4>
+  <p><%= message.content %></p>
+
+  <% if (user && (user.roles.includes('member') ||
+  user.roles.includes('admin'))) { %>
+  <div class="message-meta">
+    <p>
+      <strong>Author:</strong> <%= message.first_name %> <%= message.last_name
+      %>
+    </p>
+    <p>
+      <strong>Posted:</strong> <%= new
+      Date(message.created_at).toLocaleDateString() %>
+    </p>
+  </div>
+  <% } else { %>
+  <div class="message-meta">
+    <p><em>Author and date visible to members only</em></p>
+  </div>
+  <% } %>
+</div>
+<hr />
+<% }); %> <% } %>

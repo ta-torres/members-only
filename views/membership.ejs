@@ -1,0 +1,25 @@
+<h2>Join the Club</h2>
+
+<p>Enter the secret code to become a club member and see message authors!</p>
+
+<% if (errors.length > 0) { %>
+<div class="errors">
+  <ul>
+    <% errors.forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }); %>
+  </ul>
+</div>
+<% } %>
+
+<form method="POST" action="/membership">
+  <div>
+    <label for="code">Secret Code:</label>
+    <input type="text" id="code" name="code" required />
+  </div>
+
+  <div>
+    <button type="submit">Join Club</button>
+    <a href="/">Cancel</a>
+  </div>
+</form>

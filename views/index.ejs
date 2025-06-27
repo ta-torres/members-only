@@ -11,6 +11,10 @@
 
 <div class="user-actions">
   <a href="/messages/new">Create New Message</a>
+
+  <% if (!user.roles.includes('member') && !user.roles.includes('admin')) { %> |
+  <a href="/membership">Join the Club</a>
+  <% } %>
 </div>
 
 <% } %>

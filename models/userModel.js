@@ -30,6 +30,29 @@ const userModel = {
     }
   },
 
+  updateUserRole: async (userId, roleId) => {
+    /* start transaction
+    remove current role
+    add new one
+    end transaction
+    */
+    try {
+      await pool.query("BEGIN");
+
+      await pool.query("DELETE FROM user_roles WHERE user_id = $1", [userId]);
+
+      await pool.query(
+        "INSERT INTO user_roles (user_id, role_id) VALUES ($1, $2)",
+        [userId, roleId]
+      );
+
+      await pool.query("COMMIT");
+    } catch (error) {
+      await pool.query("ROLLBACK");
+      throw error;
+    }
+  },
+
   findByEmail: async (email) => {
     const result = await pool.query("SELECT * FROM users WHERE email = $1", [
       email,

@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 3000;
 const authRoutes = require("./routes/authRoutes");
 const indexRoutes = require("./routes/indexRoutes");
 const messageRoutes = require("./routes/messageRoutes");
+const membershipRoutes = require("./routes/membershipRoutes");
 
 // Set up views folder and view engine
 app.set("view engine", "ejs");
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
 app.use("/messages", messageRoutes);
+app.use("/membership", membershipRoutes);
 
 app.get("/test-db", async (req, res) => {
   try {

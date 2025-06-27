@@ -46,6 +46,13 @@ const validationRules = {
       .isLength({ max: 1000 })
       .withMessage("Message must be less than 1000 characters"),
   ],
+
+  membershipCode: [
+    body("code")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Membership code is required"),
+  ],
 };
 
 module.exports = validationRules;

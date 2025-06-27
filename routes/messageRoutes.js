@@ -13,4 +13,10 @@ router.post(
   messageController.postNewMessage
 );
 
+router.post(
+  "/:id/delete",
+  authMiddleware.requireAdmin,
+  messageController.deleteMessage
+);
+
 module.exports = router;

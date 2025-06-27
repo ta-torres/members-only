@@ -8,6 +8,11 @@
   Hello <%= user.first_name %>! You are logged in as a <%= user.roles ?
   user.roles.join(', ') : 'guest' %>.
 </p>
+
+<div class="user-actions">
+  <a href="/messages/new">Create New Message</a>
+</div>
+
 <% } %>
 
 <h3>Club Messages</h3>

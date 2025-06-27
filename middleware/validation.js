@@ -30,6 +30,22 @@ const validationRules = {
       return true;
     }),
   ],
+
+  message: [
+    body("title")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Title is required")
+      .isLength({ max: 100 })
+      .withMessage("Title must be less than 100 characters"),
+
+    body("content")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Message content is required")
+      .isLength({ max: 1000 })
+      .withMessage("Message must be less than 1000 characters"),
+  ],
 };
 
 module.exports = validationRules;

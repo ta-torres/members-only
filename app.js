@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 
 const authRoutes = require("./routes/authRoutes");
 const indexRoutes = require("./routes/indexRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 
 // Set up views folder and view engine
 app.set("view engine", "ejs");
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 // 5. App routes
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
+app.use("/messages", messageRoutes);
 
 app.get("/test-db", async (req, res) => {
   try {

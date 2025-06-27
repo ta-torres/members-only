@@ -13,6 +13,17 @@ const messageModel = {
     return result.rows;
   },
 
+  create: async (messageData) => {
+    const { title, content, userId } = messageData;
+
+    const result = await pool.query(
+      "INSERT INTO messages (title, content, user_id) VALUES ($1, $2, $3) RETURNING id",
+      [title, content, userId]
+    );
+
+    return result.rows[0].id;
+  },
+
   deleteById: async (id) => {
     const result = await pool.query(
       "DELETE FROM messages WHERE id = $1 RETURNING id",

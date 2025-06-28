@@ -4,22 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %> - Members Only</title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header>
       <nav>
-        <h1><a href="/">Members Only Clubhouse</a></h1>
-        <ul>
+        <h1><a href="/" class="nav-brand">Members Only Clubhouse</a></h1>
+        <ul class="nav-links">
           <% if (user) { %>
           <li>Welcome, <%= user.first_name %>!</li>
           <li>
             <form method="POST" action="/auth/logout" style="display: inline">
-              <button type="submit">Logout</button>
+              <button type="submit" class="btn-ghost">Logout</button>
             </form>
           </li>
           <% } else { %>
-          <li><a href="/auth/login">Login</a></li>
-          <li><a href="/auth/signup">Sign Up</a></li>
+          <li><a href="/auth/login" class="nav-link">Login</a></li>
+          <li><a href="/auth/signup" class="nav-link">Sign Up</a></li>
           <% } %>
         </ul>
       </nav>
